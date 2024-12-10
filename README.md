@@ -6,7 +6,6 @@ Simple windows mutli-media controller
   <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white">
   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white">
   <img src="https://img.shields.io/badge/license-GPL_3.0-blue?style=for-the-badge&logo=&logoColor=whit">
-  <img src="https://img.shields.io/badge/ImGui-lightblue?style=for-the-badge&logo=&logoColor=whit">
 </p>
 
 ## code examples
