@@ -19,25 +19,26 @@ class MediaController {
 public:
     MediaController() {
         CoInitialize(NULL);
-        CoCreateInstance(__uuidof(MMDeviceEnumerator), NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&deviceEnumerator));
-        deviceEnumerator->GetDefaultAudioEndpoint(eRender, eMultimedia, &defaultDevice);
-        defaultDevice->Activate(__uuidof(IAudioEndpointVolume), CLSCTX_INPROC_SERVER, NULL, (void**)&endpointVolume);
+        CoCreateInstance(__uuidof(MMDeviceEnumerator), NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&enumerator));
+        enumerator->GetDefaultAudioEndpoint(eRender, eMultimedia, &device);
+        device->Activate(__uuidof(IAudioEndpointVolume), CLSCTX_INPROC_SERVER, NULL, (void**)&enpoint_volume);
+        manager = GlobalSystemMediaTransportControlsSessionManager::RequestAsync().get();
     }
 
     ~MediaController() {
-        if (endpointVolume) endpointVolume->Release();
-        if (defaultDevice) defaultDevice->Release();
-        if (deviceEnumerator) deviceEnumerator->Release();
+        if (enpoint_volume) enpoint_volume->Release();
+        if (device) device->Release();
+        if (enumerator) enumerator->Release();
         CoUninitialize();
     }
 
     float get_volume() {
         float volume = 0.0f;
-        return (endpointVolume && SUCCEEDED(endpointVolume->GetMasterVolumeLevelScalar(&volume))) ? volume * 100.0f : 0.0f;
+        return (enpoint_volume && SUCCEEDED(enpoint_volume->GetMasterVolumeLevelScalar(&volume))) ? volume * 100.0f : 0.0f;
     }
 
     void set_volume(float volume) {
-        if (endpointVolume) endpointVolume->SetMasterVolumeLevelScalar(volume / 100.0f, NULL);
+        if (enpoint_volume) enpoint_volume->SetMasterVolumeLevelScalar(volume / 100.0f, NULL);
     }
 
     void play() {
@@ -60,10 +61,21 @@ public:
         mediacommand(APPCOMMAND_MEDIA_PREVIOUSTRACK);
     }
 
+    std::string get_title() {
+        auto session = manager.GetCurrentSession();
+        return session ? winrt::to_string(session.TryGetMediaPropertiesAsync().get().Title()) : "N/A";
+    }
+
+    std::string get_artist() {
+        auto session = manager.GetCurrentSession();
+        return session ? winrt::to_string(session.TryGetMediaPropertiesAsync().get().Artist()) : "N/A";
+    }
+
 private:
-    IAudioEndpointVolume* endpointVolume = nullptr;
-    IMMDeviceEnumerator* deviceEnumerator = nullptr;
-    IMMDevice* defaultDevice = nullptr;
+    GlobalSystemMediaTransportControlsSessionManager manager{ nullptr };
+    IAudioEndpointVolume* enpoint_volume = nullptr;
+    IMMDeviceEnumerator* enumerator = nullptr;
+    IMMDevice* device = nullptr; 
 
     void mediacommand(int command) {
         HWND hwnd = GetForegroundWindow();
