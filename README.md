@@ -25,6 +25,15 @@ float Volume = media.get_volume();
 media.set_volume(50.f);
 ```
 
+### Getting Artist Name
+```cpp
+media.get_artist();
+```
+### Getting Song Name
+```cpp
+media.get_title();
+```
+
 ## Controlling media playback
 
 ### Play Media
