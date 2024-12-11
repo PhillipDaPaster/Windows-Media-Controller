@@ -1,4 +1,4 @@
-# Memory-Module
+# Windows Multi Media Controller
 Simple windows mutli-media controller 
 
 <p align="center">
