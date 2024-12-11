@@ -17,7 +17,7 @@ MediaController media;
 
 ### Getting the current system volume
 ```cpp
-float Volume = media.get_volume();
+media.get_volume();
 ```
 
 ### Setting the system volume
