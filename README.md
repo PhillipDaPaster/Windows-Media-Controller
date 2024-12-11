@@ -8,7 +8,7 @@ Simple windows mutli-media controller
   <img src="https://img.shields.io/badge/license-GPL_3.0-blue?style=for-the-badge&logo=&logoColor=whit">
 </p>
 
-## code examples
+## Code Examples
 
 ### Creating an instance of `MediaController`
 ```cpp
