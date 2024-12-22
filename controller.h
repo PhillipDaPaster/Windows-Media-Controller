@@ -18,6 +18,7 @@ using namespace Windows::Storage::Streams;
 class MediaController {
 public:
     MediaController() {
+        winrt::init_apartment();
         CoInitialize(NULL);
         CoCreateInstance(__uuidof(MMDeviceEnumerator), NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&enumerator));
         enumerator->GetDefaultAudioEndpoint(eRender, eMultimedia, &device);
