@@ -1,6 +1,11 @@
-# Windows Multi Media Controller
-Simple windows mutli-media controller 
 
+<h1 align="center">Windows Multi Media Controller</h1>
+
+### A modern, safe, and lightweight C++ wrapper around Windows' system media transport and volume control APIs.
+
+### Supports playback management, media metadata retrieval (title, artist, album, artwork), and system volume control — all via native WinRT and Core Audio interfaces.
+
+---
 <p align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
   <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white">
@@ -8,33 +13,50 @@ Simple windows mutli-media controller
   <img src="https://img.shields.io/badge/license-GPL_3.0-blue?style=for-the-badge&logo=&logoColor=whit">
 </p>
 
-## Code Examples
 
-### Creating an instance of `MediaController`
+## Example Usage
+
+### Create a MediaController Instance
 ```cpp
 MediaController media;
 ```
 
-### Getting the current system volume
+### Get Current System Volume
 ```cpp
-media.get_volume();
+float volume = media.GetVolume();
 ```
 
-### Setting the system volume
+### Setting System Volume
 ```cpp
 media.set_volume(50.f);
 ```
 
-### Getting Artist Name
+### Retrieve Current Song Info
 ```cpp
-media.get_artist();
-```
-### Getting Song Name
-```cpp
-media.get_title();
+std::string title  = media.GetTitle();
+std::string artist = media.GetArtist();
+std::string album  = media.GetAlbumTitle();
 ```
 
-## Controlling media playback
+### Retrieve Album Art
+```cpp
+std::vector<uint8_t> art = media.GetAlbumArt(); 
+```
+
+### Get Playback Status
+```cpp
+std::string status = media.GetPlaybackStatus();  // "Playing", "Paused", "Stopped", "Changing".
+```
+
+### Get Timeline Info
+```cpp
+double position = media.GetPosition();   // seconds
+double duration = media.GetDuration();   // seconds
+std::string time = media.GetFormattedTime(); // MM:SS / MM:SS
+
+```
+
+## Media Playback Controls
 
 ### Play Media
 ```cpp
@@ -67,4 +89,9 @@ media.previous();
 > <mark>**[Windows SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/).**</mark><br>
 > Provides the necessary libraries and tools to build applications for Windows.  
 
+This project is licensed under the **GNU General Public License**.  
+See the [LICENSE](LICENSE) file for more details.
 
+<p align="center">
+  <i>Windows Multi Media Controller</i>
+</p>
