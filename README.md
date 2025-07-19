@@ -1,10 +1,6 @@
 
 <h1 align="center">Windows Multi Media Controller</h1>
 
-### A modern, safe, and lightweight C++ wrapper around Windows' system media transport and volume control APIs.
-
-### Supports playback management, media metadata retrieval (title, artist, album, artwork), and system volume control — all via native WinRT and Core Audio interfaces.
-
 ---
 <p align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
@@ -12,6 +8,12 @@
   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white">
   <img src="https://img.shields.io/badge/license-GPL_3.0-blue?style=for-the-badge&logo=&logoColor=whit">
 </p>
+
+## Overview
+A modern, safe, and lightweight C++ wrapper around Windows' system media transport and volume control APIs.
+
+Supports playback management, media metadata retrieval (title, artist, album, artwork), and system volume control — all via native WinRT and Core Audio interfaces.
+
 
 
 ## Example Usage
