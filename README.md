@@ -89,6 +89,7 @@ media.previous();
 > <mark>**[Windows SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/).**</mark><br>
 > Provides the necessary libraries and tools to build applications for Windows.  
 
+## License
 This project is licensed under the **GNU General Public License**.  
 See the [LICENSE](LICENSE) file for more details.
 
